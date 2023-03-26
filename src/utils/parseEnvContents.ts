@@ -20,3 +20,4 @@ export const parseEnvContents = (envPath: string): EnvVar[] => {
 
   return envObj;
 };
+
