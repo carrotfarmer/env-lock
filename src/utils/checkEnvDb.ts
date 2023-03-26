@@ -1,14 +1,5 @@
-import * as fs from "fs";
-// import * as path from "path";
+import { checkIfFileExists } from "./checkIfFileExists";
 
 export const checkEnvDb = (): boolean | undefined => {
-  try {
-    if (fs.existsSync("./envStore.sqlite")) {
-      return true;
-    } else {
-      return false;
-    }
-  } catch (err) {
-    console.error(err);
-  }
+  return checkIfFileExists("./envStore.sqlite");
 };

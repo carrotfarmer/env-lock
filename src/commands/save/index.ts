@@ -1,8 +1,10 @@
-import { Args, Command, Flags } from "@oclif/core";
+import { Args, Command } from "@oclif/core";
 import chalk from "chalk";
 import { Env } from "../../types/Env";
 import { checkEnvDb } from "../../utils/checkEnvDb";
+import { checkIfFileExists } from "../../utils/checkIfFileExists";
 import { createEnvDb } from "../../utils/createEnvDb";
+import { getFileExtension } from "../../utils/getFileExtension";
 
 import { parseEnvContents } from "../../utils/parseEnvContents";
 import { saveEnv } from "../../utils/saveEnv";
@@ -29,6 +31,21 @@ export default class Save extends Command {
     const dbExists = checkEnvDb();
 
     if (args.file && args.name) {
+      if (!checkIfFileExists(args.file)) {
+        this.log(chalk.redBright(`The file you input does not exist.`));
+        this.exit();
+      }
+
+      // file extension
+      const ext = getFileExtension(args.file);
+
+      if (ext !== "env" && ext !== "local" && ext !== "development" && ext !== "production") {
+        this.log(
+          chalk.redBright(`The file you input is not an ${chalk.redBright.bold("env file.")}`)
+        );
+        this.exit();
+      }
+
       const envObj = parseEnvContents(args.file);
 
       const env: Env = {

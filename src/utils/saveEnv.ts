@@ -6,12 +6,10 @@ import { Env } from "../types/Env";
 import { EnvVar } from "../types/EnvVar";
 
 export const saveEnv = (env: Env): void => {
-  const db = new Database("envStore.sqlite", { verbose: console.log });
+  const db = new Database("envStore.sqlite");
 
   // https://github.com/WiseLibs/better-sqlite3#usage
   db.pragma("journal_mode = WAL");
-
-  console.log(env.name)
 
   const createTable = `CREATE TABLE IF NOT EXISTS ${env.name}('key' varchar, 'value' varchar)`
   db.exec(createTable);
@@ -24,7 +22,7 @@ export const saveEnv = (env: Env): void => {
 
   try {
     insertMany(env.envVars);
-    console.log(chalk.green.bold(`The env for ${env.name} has been successfully added to the database!`));
+    console.log(chalk.greenBright(`The env for ${chalk.greenBright.bold(env.name)} has been successfully added to the database!`));
   } catch (err) {
     console.log(chalk.red.bold("ERR: There was an error while saving your env to the database."));
     if (!db.inTransaction) throw err; // (transaction was forcefully rolled back)
