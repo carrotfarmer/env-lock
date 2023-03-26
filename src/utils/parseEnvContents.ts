@@ -4,7 +4,7 @@ import * as path from "path";
 import type { EnvVar } from "../types/EnvVar";
 
 export const parseEnvContents = (envPath: string): EnvVar[] => {
-  const viewPath = path.join(process.cwd(), envPath).replace(/\\/g, "/");
+  const viewPath = envPath.replace(/\\/g, "/");
 
   const envContents = fs.readFileSync(viewPath, "utf8");
 

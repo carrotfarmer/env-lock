@@ -25,6 +25,10 @@ export default class Save extends Command {
     const dbExists = checkEnvDb();
 
     if (args.file && args.name) {
+      if (!dbExists) {
+        createEnvDb();
+      }
+
       if (!checkIfFileExists(args.file)) {
         this.log(chalk.redBright(`The file you input does not exist.`));
         this.exit();
@@ -33,7 +37,7 @@ export default class Save extends Command {
       // file extension
       const ext = getFileExtension(args.file);
 
-      if (ext !== "env" && ext !== "local" && ext !== "development" && ext !== "production") {
+      if (ext !== "env" && ext !== "local" && ext !== "development" && ext !== "production" && ext !== "example") {
         this.log(
           chalk.redBright(`The file you input is not an ${chalk.redBright.bold("env file.")}`)
         );
@@ -42,14 +46,10 @@ export default class Save extends Command {
 
       const envObj = parseEnvContents(args.file);
 
-      const env: Env = {
+     const env: Env = {
         name: args.name,
         envVars: envObj,
       };
-
-      if (!dbExists) {
-        createEnvDb();
-      }
 
       this.log(`${saveEnv(env)}`);
     } else {

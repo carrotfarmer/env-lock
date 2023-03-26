@@ -1,8 +1,9 @@
 import Database from "better-sqlite3";
 import chalk from "chalk";
+import * as path from "path";
 
 export const deleteEnv = (name: string) => {
-  const db = new Database("envStore.sqlite");
+  const db = new Database(path.resolve(__dirname, "envStore.sqlite"));
 
   const deleteMutation = db.prepare(`DROP TABLE IF EXISTS ${name}`);
 

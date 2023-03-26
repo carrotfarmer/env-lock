@@ -1,4 +1,5 @@
 import Database from "better-sqlite3";
+import * as path from "path";
 
 import chalk from "chalk";
 
@@ -7,7 +8,7 @@ import type { EnvVar } from "../types/EnvVar";
 import { encryptString } from "./encryptString";
 
 export const saveEnv = (env: Env): void => {
-  const db = new Database("envStore.sqlite");
+  const db = new Database(path.resolve(__dirname, "envStore.sqlite"));
 
   // https://github.com/WiseLibs/better-sqlite3#usage
   db.pragma("journal_mode = WAL");

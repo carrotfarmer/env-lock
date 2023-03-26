@@ -21,7 +21,7 @@ export default class View extends Command {
     if (args.name) {
       const envContents = viewEnv(args.name);
 
-      if (typeof envContents !== "undefined") {
+      if (typeof envContents === "undefined") {
         this.exit()
       }
 
