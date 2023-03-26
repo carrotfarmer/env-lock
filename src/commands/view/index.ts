@@ -8,10 +8,7 @@ export default class View extends Command {
   static examples = ["<%= config.bin %> <%= command.id %>"];
 
   static flags = {
-    // flag with a value (-n, --name=VALUE)
-    // name: Flags.string({ char: "n", description: "name to print" }),
-    // flag with no value (-f, --force)
-    // force: Flags.boolean({ char: "f" }),
+    hide: Flags.boolean({ char: "h" }),
   };
 
   static args = {
@@ -22,12 +19,21 @@ export default class View extends Command {
     const { args, flags } = await this.parse(View);
 
     if (args.name) {
-      const envContents = viewEnv(args.name)
+      const envContents = viewEnv(args.name);
 
-      envContents.map((envVar) => {
-        this.log(`${chalk.blueBright.bold(envVar.key)}=${chalk.greenBright.bold(envVar.value)}`)
-      })
+      if (!flags.hide) {
+        envContents.map((envVar) => {
+          this.log(`${chalk.blueBright.bold(envVar.key)}=${chalk.greenBright.bold(envVar.value)}`);
+        });
+      } else {
+        envContents.map((envVar) => {
+          this.log(
+            `${chalk.blueBright.bold(envVar.key)}=${chalk.greenBright.bold(
+              envVar.value.replace(/./g, "*")
+            )}`
+          );
+        });
+      }
     }
   }
 }
-
