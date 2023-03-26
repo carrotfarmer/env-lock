@@ -1,17 +1,17 @@
-import {expect, test} from '@oclif/test'
+import { expect, test } from "@oclif/test";
 
-describe('delete', () => {
+describe("delete", () => {
   test
-  .stdout()
-  .command(['delete'])
-  .it('runs hello', ctx => {
-    expect(ctx.stdout).to.contain('hello world')
-  })
+    .stdout()
+    .command(["delete", "test"])
+    .it("runs delete", (ctx) => {
+      expect(ctx.stdout).to.contain("Successfully deleted test");
+    });
 
   test
-  .stdout()
-  .command(['delete', '--name', 'jeff'])
-  .it('runs hello --name jeff', ctx => {
-    expect(ctx.stdout).to.contain('hello jeff')
-  })
-})
+    .stdout()
+    .command(["delete"])
+    .it("runs delete with invalid input", (ctx) => {
+      expect(ctx.stdout).to.contain("ERR: No env name provided!");
+    });
+});
