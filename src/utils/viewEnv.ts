@@ -6,7 +6,6 @@ import { decryptString } from "./encryptString";
 
 export const viewEnv = (envName: string): EnvVar[] | undefined => {
   const db = new Database(path.resolve(__dirname, "envStore.sqlite"));
-  console.log(path.resolve(__dirname, "envStore.sqlite"))
 
   try {
     const query = db.prepare(`SELECT * FROM ${envName}`);

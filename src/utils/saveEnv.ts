@@ -33,7 +33,6 @@ export const saveEnv = (env: Env): void => {
     );
   } catch (err) {
     console.log(chalk.red.bold("ERR: There was an error while saving your env to the database."));
-    if (!db.inTransaction) throw err; // (transaction was forcefully rolled back)
   }
 };
 

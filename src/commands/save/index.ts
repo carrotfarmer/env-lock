@@ -37,7 +37,13 @@ export default class Save extends Command {
       // file extension
       const ext = getFileExtension(args.file);
 
-      if (ext !== "env" && ext !== "local" && ext !== "development" && ext !== "production" && ext !== "example") {
+      if (
+        ext !== "env" &&
+        ext !== "local" &&
+        ext !== "development" &&
+        ext !== "production" &&
+        ext !== "example"
+      ) {
         this.log(
           chalk.redBright(`The file you input is not an ${chalk.redBright.bold("env file.")}`)
         );
@@ -46,12 +52,12 @@ export default class Save extends Command {
 
       const envObj = parseEnvContents(args.file);
 
-     const env: Env = {
+      const env: Env = {
         name: args.name,
         envVars: envObj,
       };
 
-      this.log(`${saveEnv(env)}`);
+      saveEnv(env)
     } else {
       if (!args.file) {
         this.log(chalk.redBright.bold("ERR: No env file provided!"));
@@ -69,4 +75,3 @@ export default class Save extends Command {
     }
   }
 }
-
