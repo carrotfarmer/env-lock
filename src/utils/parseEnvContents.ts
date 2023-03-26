@@ -18,7 +18,5 @@ export const parseEnvContents = (envPath: string): EnvVar[] => {
     }
   });
 
-  console.log(envObj)
-
   return envObj;
 };
