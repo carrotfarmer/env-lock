@@ -20,6 +20,8 @@
     "@oclif/core": "^2",
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.4.3",
+    "@types/better-sqlite3": "^7.6.3",
+    "better-sqlite3": "^8.2.0",
     "chalk": "4.1.2"
   },
   "devDependencies": {
