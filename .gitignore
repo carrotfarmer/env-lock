@@ -7,3 +7,7 @@
 /tmp
 node_modules
 oclif.manifest.json
+.env.development
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
