@@ -21,12 +21,16 @@ export default class View extends Command {
     if (args.name) {
       const envContents = viewEnv(args.name);
 
+      if (typeof envContents !== "undefined") {
+        this.exit()
+      }
+
       if (!flags.hide) {
-        envContents.map((envVar) => {
+        envContents!.map((envVar) => {
           this.log(`${chalk.blueBright.bold(envVar.key)}=${chalk.greenBright.bold(envVar.value)}`);
         });
       } else {
-        envContents.map((envVar) => {
+        envContents!.map((envVar) => {
           this.log(
             `${chalk.blueBright.bold(envVar.key)}=${chalk.greenBright.bold(
               envVar.value.replace(/./g, "*")
@@ -34,6 +38,13 @@ export default class View extends Command {
           );
         });
       }
+    } else {
+      this.log(chalk.redBright.bold("ERR: No env name provided!"));
+      this.log(
+        chalk.yellow.bold(
+          `You can run ${chalk.blue.bold("env-lock --help")} to learn the usage of this CLI.`
+        )
+      );
     }
   }
 }

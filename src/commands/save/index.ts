@@ -60,16 +60,16 @@ export default class Save extends Command {
       this.log(`${saveEnv(env)}`);
     } else {
       if (!args.file) {
-        this.log(chalk.red.bold("ERR: No env file provided!"));
+        this.log(chalk.redBright.bold("ERR: No env file provided!"));
       }
 
       if (!args.name) {
-        this.log(chalk.red.bold("ERR: No env name provided!"));
+        this.log(chalk.redBright.bold("ERR: No env name provided!"));
       }
 
       this.log(
         chalk.yellow.bold(
-          `You can run ${chalk.blue.bold("env-lock --help")} to learn the usage of this CLI.`
+          `You can run ${chalk.blueBright.bold("env-lock --help")} to learn the usage of this CLI.`
         )
       );
     }

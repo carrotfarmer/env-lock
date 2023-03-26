@@ -1,17 +1,28 @@
 import Database from "better-sqlite3";
+import chalk from "chalk";
 import type { EnvVar } from "../types/EnvVar";
 import { decryptString } from "./encryptString";
 
-export const viewEnv = (envName: string): EnvVar[] => {
+export const viewEnv = (envName: string): EnvVar[] | undefined => {
   const db = new Database("envStore.sqlite");
-  const query = db.prepare(`SELECT * FROM ${envName}`);
 
-  const envVars: EnvVar[] = [];
+  try {
+    const query = db.prepare(`SELECT * FROM ${envName}`);
 
-  for (const envVar of query.iterate()) {
-    envVars.push({ key: envVar.key, value: decryptString(envVar.value) });
+    const envVars: EnvVar[] = [];
+
+    for (const envVar of query.iterate()) {
+      envVars.push({ key: envVar.key, value: decryptString(envVar.value) });
+    }
+
+    return envVars;
+  } catch (err) {
+    if (err instanceof Error) {
+      if (err.message.includes("no such table")) {
+        console.log(chalk.redBright(`${chalk.redBright.bold(envName)} does not exist.`));
+      }
+
+      process.exit();
+    }
   }
-
-  return envVars;
 };
-
