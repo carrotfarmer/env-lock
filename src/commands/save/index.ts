@@ -1,11 +1,12 @@
 import { Args, Command } from "@oclif/core";
 import chalk from "chalk";
+
 import { Env } from "../../types/Env";
+
 import { checkEnvDb } from "../../utils/checkEnvDb";
 import { checkIfFileExists } from "../../utils/checkIfFileExists";
 import { createEnvDb } from "../../utils/createEnvDb";
 import { getFileExtension } from "../../utils/getFileExtension";
-
 import { parseEnvContents } from "../../utils/parseEnvContents";
 import { saveEnv } from "../../utils/saveEnv";
 
