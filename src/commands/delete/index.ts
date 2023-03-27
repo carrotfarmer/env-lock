@@ -1,6 +1,7 @@
 import { Args, Command } from "@oclif/core";
 import chalk from "chalk";
 import { checkEnvDb } from "../../utils/checkEnvDb";
+import { checkEnvExists } from "../../utils/checkEnvExists";
 import { deleteEnv } from "../../utils/deleteEnv";
 
 export default class Delete extends Command {
@@ -29,9 +30,12 @@ export default class Delete extends Command {
       this.exit();
     }
 
-
     if (args.name) {
-      deleteEnv(args.name)
+      if (checkEnvExists(args.name)) {
+        deleteEnv(args.name);
+      } else {
+        console.log(chalk.redBright(`${chalk.redBright.bold(args.name)} does not exist.`));
+      }
     } else {
       this.log(chalk.redBright.bold("ERR: No env name provided!"));
       this.log(
@@ -42,4 +46,3 @@ export default class Delete extends Command {
     }
   }
 }
-
