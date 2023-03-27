@@ -1,5 +1,6 @@
 import { Args, Command } from "@oclif/core";
 import chalk from "chalk";
+import { checkEnvDb } from "../../utils/checkEnvDb";
 import { deleteEnv } from "../../utils/deleteEnv";
 
 export default class Delete extends Command {
@@ -13,6 +14,21 @@ export default class Delete extends Command {
 
   public async run(): Promise<void> {
     const { args } = await this.parse(Delete);
+
+    const dbExists = checkEnvDb();
+
+    if (!dbExists) {
+      this.log(
+        chalk.yellowBright(
+          `No database store found! Please create one by running ${chalk.yellowBright.bold(
+            "env-lock init"
+          )}`
+        )
+      );
+
+      this.exit();
+    }
+
 
     if (args.name) {
       deleteEnv(args.name)

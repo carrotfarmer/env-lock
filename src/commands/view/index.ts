@@ -1,5 +1,6 @@
 import { Args, Command, Flags } from "@oclif/core";
 import chalk from "chalk";
+import { checkEnvDb } from "../../utils/checkEnvDb";
 import { viewEnv } from "../../utils/viewEnv";
 
 export default class View extends Command {
@@ -18,11 +19,25 @@ export default class View extends Command {
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(View);
 
+    const dbExists = checkEnvDb();
+
+    if (!dbExists) {
+      this.log(
+        chalk.yellowBright(
+          `No database store found! Please create one by running ${chalk.yellowBright.bold(
+            "env-lock init"
+          )}`
+        )
+      );
+
+      this.exit();
+    }
+
     if (args.name) {
       const envContents = viewEnv(args.name);
 
       if (typeof envContents === "undefined") {
-        this.exit()
+        this.exit();
       }
 
       if (!flags.hide) {

@@ -26,7 +26,15 @@ export default class Save extends Command {
 
     if (args.file && args.name) {
       if (!dbExists) {
-        createEnvDb();
+        this.log(
+          chalk.yellowBright(
+            `No database store found! Please create one by running ${chalk.yellowBright.bold(
+              "env-lock init"
+            )}`
+          )
+        );
+
+        this.exit();
       }
 
       if (!checkIfFileExists(args.file)) {
@@ -57,7 +65,7 @@ export default class Save extends Command {
         envVars: envObj,
       };
 
-      saveEnv(env)
+      saveEnv(env);
     } else {
       if (!args.file) {
         this.log(chalk.redBright.bold("ERR: No env file provided!"));

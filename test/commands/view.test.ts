@@ -3,16 +3,18 @@ import { expect, test } from "@oclif/test";
 describe("view", () => {
   test
     .stdout()
-    .command(["save", ".env.local", "test2"])
-    .command(["view", "test2"])
+    .command(["save", ".env.local", "viewtest1"])
+    .command(["view", "viewtest1"])
     .it("runs view", (ctx) => {
+      console.log(ctx.stdout)
       expect(ctx.stdout).to.contain("hello=hello");
     });
 
   test
     .stdout()
-    .command(["view", "test2", "-h"])
+    .command(["view", "viewtest1", "-h"])
     .it("runs view with the hide flag", (ctx) => {
+      console.log(ctx.stdout)
       expect(ctx.stdout).to.contain("hello=*****")
     })
 
@@ -23,3 +25,4 @@ describe("view", () => {
       expect(ctx.stdout).to.contain("ERR: No env name provided!")
     })
 });
+
