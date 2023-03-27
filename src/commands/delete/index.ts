@@ -42,3 +42,4 @@ export default class Delete extends Command {
     }
   }
 }
+
