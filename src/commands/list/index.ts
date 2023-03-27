@@ -12,7 +12,9 @@ export default class List extends Command {
     if (checkEnvDb()) {
       const envs = listEnvs();
 
-      envs.map((env: string) => this.log(chalk.yellowBright.bold(env)));
+      envs.length > 0
+        ? envs.map((env: string) => this.log(chalk.yellowBright.bold(env)))
+        : this.log(chalk.yellowBright.bold("Nothing here yet!"));
     } else {
       console.log(
         this.log(
