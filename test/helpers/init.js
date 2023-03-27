@@ -17,3 +17,4 @@ fs.open(`.env.local`, "w", (err, file) => {
 });
 
 fs.writeFileSync(".env.local", "hello = hello");
+

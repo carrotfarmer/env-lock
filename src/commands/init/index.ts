@@ -13,7 +13,7 @@ export default class Init extends Command {
     const dbExists = checkEnvDb();
 
     if (!dbExists) {
-      createEnvDb();
+      createEnvDb("envStore.sqlite");
     } else {
       this.log(chalk.yellowBright.bold("Database store already exists! Skipping operation"));
     }
