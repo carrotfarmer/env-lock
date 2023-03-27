@@ -15,7 +15,8 @@ export default class Init extends Command {
     if (!dbExists) {
       createEnvDb();
     } else {
-      this.log(chalk.yellowBright.bold("Database store already exists! Skipping operation"))
+      this.log(chalk.yellowBright.bold("Database store already exists! Skipping operation"));
     }
   }
 }
+

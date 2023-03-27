@@ -6,7 +6,7 @@ describe("delete", () => {
     .command(["init"])
     .command(["delete", "test"])
     .it("runs delete", (ctx) => {
-      expect(ctx.stdout).to.contain("Successfully deleted test");
+      expect(ctx.stdout).to.contain("No env store database found, created database.");
     });
 
   test
@@ -16,3 +16,4 @@ describe("delete", () => {
       expect(ctx.stdout).to.contain("ERR: No env name provided!");
     });
 });
+

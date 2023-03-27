@@ -16,13 +16,11 @@ export default class List extends Command {
         ? envs.map((env: string) => this.log(chalk.yellowBright.bold(env)))
         : this.log(chalk.yellowBright.bold("Nothing here yet!"));
     } else {
-      console.log(
-        this.log(
-          chalk.redBright(
-            `No database store found! Please create one by running ${chalk.redBright.bold(
-              "env-lock init"
-            )}`
-          )
+      this.log(
+        chalk.redBright(
+          `No database store found! Please create one by running ${chalk.redBright.bold(
+            "env-lock init"
+          )}`
         )
       );
     }

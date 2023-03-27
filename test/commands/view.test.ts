@@ -6,7 +6,6 @@ describe("view", () => {
     .command(["save", ".env.local", "viewtest1"])
     .command(["view", "viewtest1"])
     .it("runs view", (ctx) => {
-      console.log(ctx.stdout)
       expect(ctx.stdout).to.contain("hello=hello");
     });
 
