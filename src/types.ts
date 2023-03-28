@@ -3,3 +3,7 @@ export interface EnvVar {
   value: string;
 }
 
+export interface Env {
+  name: string;
+  envVars: EnvVar[]
+}

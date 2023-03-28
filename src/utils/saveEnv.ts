@@ -3,8 +3,7 @@ import * as path from "path";
 
 import chalk from "chalk";
 
-import type { Env } from "../types/Env";
-import type { EnvVar } from "../types/EnvVar";
+import type { Env, EnvVar } from "../types"
 import { encryptString } from "./encryptString";
 
 export const saveEnv = (env: Env): void => {

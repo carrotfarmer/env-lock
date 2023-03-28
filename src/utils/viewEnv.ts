@@ -1,7 +1,7 @@
 import Database from "better-sqlite3";
 import * as path from "path";
 import chalk from "chalk";
-import type { EnvVar } from "../types/EnvVar";
+import type { EnvVar } from "../types";
 import { decryptString } from "./encryptString";
 
 export const viewEnv = (envName: string): EnvVar[] | undefined => {

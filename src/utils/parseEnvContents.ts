@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import type { EnvVar } from "../types/EnvVar";
+import type { EnvVar } from "../types";
 
 export const parseEnvContents = (envPath: string): EnvVar[] => {
   const viewPath = envPath.replace(/\\/g, "/");
