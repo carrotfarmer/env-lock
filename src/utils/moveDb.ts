@@ -4,13 +4,7 @@ import * as pathLib from "path";
 import chalk from "chalk";
 
 export const moveDb = (path: string) => {
-  fs.access(path, (err) => {
-    if (err) fs.mkdirSync(path);
-
-    copyFile(pathLib.resolve(__dirname, "envStore.sqlite"), pathLib.join(path, "envStore.sqlite"));
-  });
-
-  const copyFile = (src: string, dest: string) => {
+  const copyFile = (src: string, dest: string): void => {
     let readStream = fs.createReadStream(src);
 
     readStream.once("error", (err) => {
@@ -23,4 +17,10 @@ export const moveDb = (path: string) => {
 
     readStream.pipe(fs.createWriteStream(dest));
   };
+
+  fs.access(path, (err) => {
+    if (err) fs.mkdirSync(path);
+
+    copyFile(pathLib.resolve(__dirname, "envStore.sqlite"), pathLib.join(path, "envStore.sqlite"));
+  });
 };
