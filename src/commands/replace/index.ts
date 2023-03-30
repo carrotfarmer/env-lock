@@ -1,5 +1,6 @@
 import { Args, Command, Flags } from "@oclif/core";
 import chalk from "chalk";
+
 import { checkEnvExists } from "../../utils/checkEnvExists";
 
 export default class Replace extends Command {

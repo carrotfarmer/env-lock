@@ -1,5 +1,6 @@
 import { Command } from "@oclif/core";
 import chalk from "chalk";
+
 import { checkEnvDb } from "../../utils/checkEnvDb";
 import { listEnvs } from "../../utils/listEnvs";
 

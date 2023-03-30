@@ -1,5 +1,6 @@
 import { Args, Command, Flags } from "@oclif/core";
 import chalk from "chalk";
+
 import { checkEnvDb } from "../../utils/checkEnvDb";
 import { viewEnv } from "../../utils/viewEnv";
 

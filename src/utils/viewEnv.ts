@@ -1,6 +1,8 @@
 import Database from "better-sqlite3";
-import * as path from "path";
 import chalk from "chalk";
+
+import * as path from "path";
+
 import type { EnvVar } from "../types";
 import { decryptString } from "./encryptString";
 

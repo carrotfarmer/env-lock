@@ -1,4 +1,5 @@
 import path from "path";
+
 import { checkIfFileExists } from "./checkIfFileExists";
 
 export const checkEnvDb = (): boolean | undefined => {
