@@ -4,7 +4,7 @@ import chalk from "chalk";
 import { checkEnvDb } from "../../utils/checkEnvDb";
 import { deleteDbStore } from "../../utils/deleteDbStore";
 
-export default class DbPath extends Command {
+export default class DeleteDb extends Command {
   static description = "Delete the database store";
 
   static examples = ["<%= config.bin %> <%= command.id %>"];
