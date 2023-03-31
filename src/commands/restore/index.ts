@@ -4,7 +4,7 @@ import chalk from "chalk";
 import * as path from "path";
 
 import { checkIfFileExists } from "../../utils/checkIfFileExists";
-import { moveBackup, moveDb } from "../../utils/moveDb";
+import { moveBackup, moveDb } from "../../utils/move";
 
 export default class Restore extends Command {
   static description = "Use a backup as the new database store";

@@ -2,7 +2,7 @@ import { Args, Command } from "@oclif/core";
 import chalk from "chalk";
 
 import { checkEnvDb } from "../../utils/checkEnvDb";
-import { moveDb } from "../../utils/moveDb";
+import { moveDb } from "../../utils/move";
 
 export default class Backup extends Command {
   static description = "Backup the database store";
