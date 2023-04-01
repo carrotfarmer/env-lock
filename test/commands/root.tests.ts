@@ -1,5 +1,6 @@
 import "./init.test";
 import "./dbpath.test";
+import "./secretkey.test";
 import "./save.test";
 import "./view.test";
 import "./delete.test";
