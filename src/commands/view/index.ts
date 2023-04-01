@@ -2,7 +2,7 @@ import { Args, Command, Flags } from "@oclif/core";
 import chalk from "chalk";
 
 import { checkEnvDb } from "../../utils/checkEnvDb";
-import { viewEnv } from "../../utils/viewEnv";
+import { viewEnv } from "../../utils/view";
 
 export default class View extends Command {
   static description = "describe the command here";

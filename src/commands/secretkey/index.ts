@@ -2,7 +2,7 @@ import { Command } from "@oclif/core";
 import chalk from "chalk";
 
 import { checkEnvDb } from "../../utils/checkEnvDb";
-import { viewSecretKey } from "../../utils/viewEnv";
+import { viewSecretKey } from "../../utils/view";
 
 export default class SecretKey extends Command {
   static description = "Create a database store";
