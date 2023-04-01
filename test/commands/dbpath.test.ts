@@ -1,4 +1,4 @@
-import { expect, test } from "@oclif/test";
+ import { expect, test } from "@oclif/test";
 
 describe("dbpath", () => {
   // TODO: Improve this test

@@ -6,9 +6,20 @@ import * as path from "path";
 import type { EnvVar } from "../types";
 import { decryptString } from "./encryptString";
 
-export const viewEnv = (envName: string): EnvVar[] | undefined => {
-  const db = new Database(path.resolve(__dirname, "envStore.sqlite"));
+const db = new Database(path.resolve(__dirname, "envStore.sqlite"));
 
+export const viewSecretKey = () => {
+  const query = db.prepare("SELECT * FROM secretKey");
+  let keyObj: { secretKey: string } = { secretKey: "" };
+
+  for (const key of query.iterate()) {
+    keyObj = key;
+  }
+
+  return keyObj.secretKey;
+};
+
+export const viewEnv = (envName: string): EnvVar[] | undefined => {
   try {
     const query = db.prepare(`SELECT * FROM ${envName}`);
 
