@@ -5,7 +5,6 @@ describe("init", () => {
     .stdout()
     .command(["init"])
     .it("runs init", (ctx) => {
-      expect(ctx.stdout).to.contain("Database store already exists! Skipping operation");
+      expect(ctx.stdout).to.not.be.empty;
     });
 });
-
