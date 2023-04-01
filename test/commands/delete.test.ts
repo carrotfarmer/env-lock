@@ -21,4 +21,10 @@ describe("delete", () => {
     .it("runs delete with invalid input", (ctx) => {
       expect(ctx.stdout).to.contain("ERR: No env name provided!");
     });
+
+  test
+    .stdout()
+    .command(["delete", "randomval"])
+    .exit()
+    .it("runs delete with an env that doesn'nt exist");
 });
