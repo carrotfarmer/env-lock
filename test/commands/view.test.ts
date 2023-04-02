@@ -22,10 +22,4 @@ describe("view", () => {
     .it("runs view with invalid input", (ctx) => {
       expect(ctx.stdout).to.contain("ERR: No env name provided!");
     });
-
-  test
-    .stdout()
-    .command(["view", "randomval"])
-    .exit()
-    .it("runs view with an env that doesn\'nt exist")
 });

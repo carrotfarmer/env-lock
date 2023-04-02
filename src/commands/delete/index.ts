@@ -36,6 +36,7 @@ export default class Delete extends Command {
         deleteEnv(args.name);
       } else {
         console.log(chalk.redBright(`${chalk.redBright.bold(args.name)} does not exist.`));
+        this.exit();
       }
     } else {
       this.log(chalk.redBright.bold("ERR: No env name provided!"));
