@@ -11,3 +11,4 @@ oclif.manifest.json
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
+.DS_STORE
