@@ -42,4 +42,3 @@ export default class Backup extends Command {
     }
   }
 }
-

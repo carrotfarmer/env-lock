@@ -19,4 +19,3 @@ export default class Init extends Command {
     }
   }
 }
-

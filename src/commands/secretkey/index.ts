@@ -5,7 +5,7 @@ import { checkEnvDb } from "../../utils/checkEnvDb";
 import { viewSecretKey } from "../../utils/view";
 
 export default class SecretKey extends Command {
-  static description = "Create a database store";
+  static description = "view the encryption key for the stored envs";
 
   static examples = ["<%= config.bin %> <%= command.id %>"];
 

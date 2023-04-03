@@ -1,10 +1,10 @@
-import { Args, Command, Flags } from "@oclif/core";
+import { Args, Command } from "@oclif/core";
 import chalk from "chalk";
 
 import { checkEnvExists } from "../../utils/checkEnvExists";
 
 export default class Replace extends Command {
-  static description = "describe the command here";
+  static description = "replaces an existing env entry with a new env file";
 
   static examples = ["<%= config.bin %> <%= command.id %>"];
 

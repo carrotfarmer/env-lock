@@ -5,7 +5,7 @@ import { checkEnvDb } from "../../utils/checkEnvDb";
 import { viewEnv } from "../../utils/view";
 
 export default class View extends Command {
-  static description = "describe the command here";
+  static description = "retrieve the values of a saved env entry";
 
   static examples = ["<%= config.bin %> <%= command.id %>"];
 
