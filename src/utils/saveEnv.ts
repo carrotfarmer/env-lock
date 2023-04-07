@@ -32,6 +32,7 @@ export const saveEnv = (env: Env): void => {
     );
   } catch (err) {
     console.log(chalk.red.bold("ERR: There was an error while saving your env to the database."));
+    console.log(chalk.blue(`Make sure you run ${chalk.blue.bold("env-lock init")} before running this command!`));
     if (!db.inTransaction) throw err; // (transaction was forcefully rolled back)
   }
 };
