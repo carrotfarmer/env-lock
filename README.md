@@ -29,9 +29,13 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`env-lock hello PERSON`](#env-lock-hello-person)
-* [`env-lock hello world`](#env-lock-hello-world)
+* [`env-lock backup [PATH]`](#env-lock-backup-path)
+* [`env-lock dbpath`](#env-lock-dbpath)
+* [`env-lock delete [NAME]`](#env-lock-delete-name)
+* [`env-lock deletedb`](#env-lock-deletedb)
 * [`env-lock help [COMMANDS]`](#env-lock-help-commands)
+* [`env-lock init`](#env-lock-init)
+* [`env-lock list`](#env-lock-list)
 * [`env-lock plugins`](#env-lock-plugins)
 * [`env-lock plugins:install PLUGIN...`](#env-lock-pluginsinstall-plugin)
 * [`env-lock plugins:inspect PLUGIN...`](#env-lock-pluginsinspect-plugin)
@@ -41,47 +45,85 @@ USAGE
 * [`env-lock plugins:uninstall PLUGIN...`](#env-lock-pluginsuninstall-plugin-1)
 * [`env-lock plugins:uninstall PLUGIN...`](#env-lock-pluginsuninstall-plugin-2)
 * [`env-lock plugins update`](#env-lock-plugins-update)
-* [`env-lock save [FILE]`](#env-lock-save-file)
+* [`env-lock replace [NAME] [FILE]`](#env-lock-replace-name-file)
+* [`env-lock restore [BACKUPPATH]`](#env-lock-restore-backuppath)
+* [`env-lock save [FILE] [NAME]`](#env-lock-save-file-name)
+* [`env-lock secretkey`](#env-lock-secretkey)
+* [`env-lock view [NAME]`](#env-lock-view-name)
 
-## `env-lock hello PERSON`
+## `env-lock backup [PATH]`
 
-Say hello
+Backup the database store
 
 ```
 USAGE
-  $ env-lock hello PERSON -f <value>
+  $ env-lock backup [PATH]
 
 ARGUMENTS
-  PERSON  Person to say hello to
-
-FLAGS
-  -f, --from=<value>  (required) Who is saying hello
+  PATH  backup path
 
 DESCRIPTION
-  Say hello
+  Backup the database store
 
 EXAMPLES
-  $ oex hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
+  $ env-lock backup
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/hello/index.ts)_
+_See code: [dist/commands/backup/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/backup/index.ts)_
 
-## `env-lock hello world`
+## `env-lock dbpath`
 
-Say hello world
+Create a database store
 
 ```
 USAGE
-  $ env-lock hello world
+  $ env-lock dbpath
 
 DESCRIPTION
-  Say hello world
+  Create a database store
 
 EXAMPLES
-  $ env-lock hello world
-  hello world! (./src/commands/hello/world.ts)
+  $ env-lock dbpath
 ```
+
+_See code: [dist/commands/dbpath/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/dbpath/index.ts)_
+
+## `env-lock delete [NAME]`
+
+Delete an env from the store
+
+```
+USAGE
+  $ env-lock delete [NAME]
+
+ARGUMENTS
+  NAME  env to delete
+
+DESCRIPTION
+  Delete an env from the store
+
+EXAMPLES
+  $ env-lock delete
+```
+
+_See code: [dist/commands/delete/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/delete/index.ts)_
+
+## `env-lock deletedb`
+
+Delete the database store
+
+```
+USAGE
+  $ env-lock deletedb
+
+DESCRIPTION
+  Delete the database store
+
+EXAMPLES
+  $ env-lock deletedb
+```
+
+_See code: [dist/commands/deletedb/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/deletedb/index.ts)_
 
 ## `env-lock help [COMMANDS]`
 
@@ -102,6 +144,40 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.8/src/commands/help.ts)_
+
+## `env-lock init`
+
+Create a database store
+
+```
+USAGE
+  $ env-lock init
+
+DESCRIPTION
+  Create a database store
+
+EXAMPLES
+  $ env-lock init
+```
+
+_See code: [dist/commands/init/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/init/index.ts)_
+
+## `env-lock list`
+
+List all the saved envs
+
+```
+USAGE
+  $ env-lock list
+
+DESCRIPTION
+  List all the saved envs
+
+EXAMPLES
+  $ env-lock list
+```
+
+_See code: [dist/commands/list/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/list/index.ts)_
 
 ## `env-lock plugins`
 
@@ -336,23 +412,105 @@ DESCRIPTION
   Update installed plugins.
 ```
 
-## `env-lock save [FILE]`
+## `env-lock replace [NAME] [FILE]`
 
-Save .env file
+replaces an existing env entry with a new env file
 
 ```
 USAGE
-  $ env-lock save [FILE]
+  $ env-lock replace [NAME] [FILE]
 
 ARGUMENTS
+  NAME  name of the project
   FILE  file to read
 
 DESCRIPTION
-  Save .env file
+  replaces an existing env entry with a new env file
+
+EXAMPLES
+  $ env-lock replace
+```
+
+_See code: [dist/commands/replace/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/replace/index.ts)_
+
+## `env-lock restore [BACKUPPATH]`
+
+Use a backup as the new database store
+
+```
+USAGE
+  $ env-lock restore [BACKUPPATH]
+
+ARGUMENTS
+  BACKUPPATH  backup path
+
+DESCRIPTION
+  Use a backup as the new database store
+
+EXAMPLES
+  $ env-lock restore
+```
+
+_See code: [dist/commands/restore/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/restore/index.ts)_
+
+## `env-lock save [FILE] [NAME]`
+
+Save an env file
+
+```
+USAGE
+  $ env-lock save [FILE] [NAME]
+
+ARGUMENTS
+  FILE  file to read
+  NAME  name of the project
+
+DESCRIPTION
+  Save an env file
 
 EXAMPLES
   $ env-lock save
 ```
 
 _See code: [dist/commands/save/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/save/index.ts)_
+
+## `env-lock secretkey`
+
+view the encryption key for the stored envs
+
+```
+USAGE
+  $ env-lock secretkey
+
+DESCRIPTION
+  view the encryption key for the stored envs
+
+EXAMPLES
+  $ env-lock secretkey
+```
+
+_See code: [dist/commands/secretkey/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/secretkey/index.ts)_
+
+## `env-lock view [NAME]`
+
+retrieve the values of a saved env entry
+
+```
+USAGE
+  $ env-lock view [NAME] [-h]
+
+ARGUMENTS
+  NAME  Name of env to be retreived.
+
+FLAGS
+  -h, --hide
+
+DESCRIPTION
+  retrieve the values of a saved env entry
+
+EXAMPLES
+  $ env-lock view
+```
+
+_See code: [dist/commands/view/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/view/index.ts)_
 <!-- commandsstop -->

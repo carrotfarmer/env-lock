@@ -8,6 +8,7 @@
 node_modules
 oclif.manifest.json
 .env.development
+.env.local
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
