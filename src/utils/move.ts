@@ -41,7 +41,4 @@ export const moveBackup = (path: string) => {
       pathLib.resolve(__dirname, "envStore.sqlite")
     );
   });
-
-  console.log("hello");
 };
-

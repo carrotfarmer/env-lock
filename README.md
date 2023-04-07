@@ -1,13 +1,7 @@
-oclif-hello-world
+env-lock
 =================
 
-oclif example Hello World CLI
-
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/oclif-hello-world.svg)](https://npmjs.org/package/oclif-hello-world)
-[![CircleCI](https://circleci.com/gh/oclif/hello-world/tree/main.svg?style=shield)](https://circleci.com/gh/oclif/hello-world/tree/main)
-[![Downloads/week](https://img.shields.io/npm/dw/oclif-hello-world.svg)](https://npmjs.org/package/oclif-hello-world)
-[![License](https://img.shields.io/npm/l/oclif-hello-world.svg)](https://github.com/oclif/hello-world/blob/main/package.json)
+A CLI to manage your .env files
 
 <!-- toc -->
 * [Usage](#usage)
@@ -17,14 +11,34 @@ oclif example Hello World CLI
 <!-- usage -->
 ```sh-session
 $ npm install -g env-lock
-$ env-lock COMMAND
-running command...
-$ env-lock (--version)
-env-lock/0.0.2 darwin-arm64 node-v18.14.2
-$ env-lock --help [COMMAND]
-USAGE
-  $ env-lock COMMAND
-...
+$ env-lock save .env.local myApp 
+The env for myApp has been successfully added to the database!
+
+$ env-lock view myApp 
+CLIENT_ID=1234567890
+CLIENT_SECRET=abcdefg
+
+$ env-lock view myApp --hide
+CLIENT_ID=**********
+CLIENT_SECRET=*******
+
+$ env-lock list 
+myApp
+
+$ env-lock replace myApp .env.development
+Replacing..
+Successfully deleted myApp
+The env for myApp has been successfully added to the database!
+Succcessfully replaced myApp!
+
+$ env-lock dbpath
+/opt/homebrew/lib/node_modules/env-lock/dist/utils/envStore.sqlite
+
+$ env-lock backup ~/Documents/env
+Backed up database store to /Users/xxxxx/Documents/env/envStore.sqlite
+
+$ env-lock restore ~/Documents/env
+Backed up database store to /opt/homebrew/lib/node_modules/env-lock/dist/utils/envStore.sqlite
 ```
 <!-- usagestop -->
 # Commands
@@ -36,15 +50,6 @@ USAGE
 * [`env-lock help [COMMANDS]`](#env-lock-help-commands)
 * [`env-lock init`](#env-lock-init)
 * [`env-lock list`](#env-lock-list)
-* [`env-lock plugins`](#env-lock-plugins)
-* [`env-lock plugins:install PLUGIN...`](#env-lock-pluginsinstall-plugin)
-* [`env-lock plugins:inspect PLUGIN...`](#env-lock-pluginsinspect-plugin)
-* [`env-lock plugins:install PLUGIN...`](#env-lock-pluginsinstall-plugin-1)
-* [`env-lock plugins:link PLUGIN`](#env-lock-pluginslink-plugin)
-* [`env-lock plugins:uninstall PLUGIN...`](#env-lock-pluginsuninstall-plugin)
-* [`env-lock plugins:uninstall PLUGIN...`](#env-lock-pluginsuninstall-plugin-1)
-* [`env-lock plugins:uninstall PLUGIN...`](#env-lock-pluginsuninstall-plugin-2)
-* [`env-lock plugins update`](#env-lock-plugins-update)
 * [`env-lock replace [NAME] [FILE]`](#env-lock-replace-name-file)
 * [`env-lock restore [BACKUPPATH]`](#env-lock-restore-backuppath)
 * [`env-lock save [FILE] [NAME]`](#env-lock-save-file-name)
