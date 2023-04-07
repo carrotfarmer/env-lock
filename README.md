@@ -3,26 +3,41 @@ env-lock
 
 A CLI to manage your .env files
 
-<!-- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
-<!-- tocstop -->
+
 # Usage
-<!-- usage -->
 ```sh-session
-$ npm install -g env-lock
-$ env-lock COMMAND
-running command...
-$ env-lock (--version)
-env-lock/0.0.3 darwin-arm64 node-v18.14.2
-$ env-lock --help [COMMAND]
-USAGE
-  $ env-lock COMMAND
-...
+$ env-lock save .env.local myApp 
+The env for myApp has been successfully added to the database!
+
+$ env-lock view myApp 
+CLIENT_ID=1234567890
+CLIENT_SECRET=abcdefg
+
+$ env-lock view myApp --hide
+CLIENT_ID=**********
+CLIENT_SECRET=*******
+
+$ env-lock list 
+myApp
+
+$ env-lock replace myApp .env.development
+Replacing..
+Successfully deleted myApp
+The env for myApp has been successfully added to the database!
+Succcessfully replaced myApp!
+
+$ env-lock dbpath
+/opt/homebrew/lib/node_modules/env-lock/dist/utils/envStore.sqlite
+
+$ env-lock backup ~/Documents/env
+Backed up database store to /Users/xxxxx/Documents/env/envStore.sqlite
+
+$ env-lock restore ~/Documents/env
+Backed up database store to /opt/homebrew/lib/node_modules/env-lock/dist/utils/envStore.sqlite
 ```
-<!-- usagestop -->
 # Commands
-<!-- commands -->
 * [`env-lock backup [PATH]`](#env-lock-backup-path)
 * [`env-lock dbpath`](#env-lock-dbpath)
 * [`env-lock delete [NAME]`](#env-lock-delete-name)
@@ -30,15 +45,6 @@ USAGE
 * [`env-lock help [COMMANDS]`](#env-lock-help-commands)
 * [`env-lock init`](#env-lock-init)
 * [`env-lock list`](#env-lock-list)
-* [`env-lock plugins`](#env-lock-plugins)
-* [`env-lock plugins:install PLUGIN...`](#env-lock-pluginsinstall-plugin)
-* [`env-lock plugins:inspect PLUGIN...`](#env-lock-pluginsinspect-plugin)
-* [`env-lock plugins:install PLUGIN...`](#env-lock-pluginsinstall-plugin-1)
-* [`env-lock plugins:link PLUGIN`](#env-lock-pluginslink-plugin)
-* [`env-lock plugins:uninstall PLUGIN...`](#env-lock-pluginsuninstall-plugin)
-* [`env-lock plugins:uninstall PLUGIN...`](#env-lock-pluginsuninstall-plugin-1)
-* [`env-lock plugins:uninstall PLUGIN...`](#env-lock-pluginsuninstall-plugin-2)
-* [`env-lock plugins update`](#env-lock-plugins-update)
 * [`env-lock replace [NAME] [FILE]`](#env-lock-replace-name-file)
 * [`env-lock restore [BACKUPPATH]`](#env-lock-restore-backuppath)
 * [`env-lock save [FILE] [NAME]`](#env-lock-save-file-name)
@@ -173,241 +179,7 @@ EXAMPLES
 
 _See code: [dist/commands/list/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.3/dist/commands/list/index.ts)_
 
-## `env-lock plugins`
-
-List installed plugins.
-
-```
-USAGE
-  $ env-lock plugins [--core]
-
-FLAGS
-  --core  Show core plugins.
-
-DESCRIPTION
-  List installed plugins.
-
-EXAMPLES
-  $ env-lock plugins
-```
-
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.4.3/src/commands/plugins/index.ts)_
-
-## `env-lock plugins:install PLUGIN...`
-
-Installs a plugin into the CLI.
-
-```
-USAGE
-  $ env-lock plugins:install PLUGIN...
-
-ARGUMENTS
-  PLUGIN  Plugin to install.
-
-FLAGS
-  -f, --force    Run yarn install with force flag.
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Installs a plugin into the CLI.
-  Can be installed from npm or a git url.
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
-  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
-  the CLI without the need to patch and update the whole CLI.
-
-
-ALIASES
-  $ env-lock plugins add
-
-EXAMPLES
-  $ env-lock plugins:install myplugin 
-
-  $ env-lock plugins:install https://github.com/someuser/someplugin
-
-  $ env-lock plugins:install someuser/someplugin
-```
-
-## `env-lock plugins:inspect PLUGIN...`
-
-Displays installation properties of a plugin.
-
-```
-USAGE
-  $ env-lock plugins:inspect PLUGIN...
-
-ARGUMENTS
-  PLUGIN  [default: .] Plugin to inspect.
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  Displays installation properties of a plugin.
-
-EXAMPLES
-  $ env-lock plugins:inspect myplugin
-```
-
-## `env-lock plugins:install PLUGIN...`
-
-Installs a plugin into the CLI.
-
-```
-USAGE
-  $ env-lock plugins:install PLUGIN...
-
-ARGUMENTS
-  PLUGIN  Plugin to install.
-
-FLAGS
-  -f, --force    Run yarn install with force flag.
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Installs a plugin into the CLI.
-  Can be installed from npm or a git url.
-
-  Installation of a user-installed plugin will override a core plugin.
-
-  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
-  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
-  the CLI without the need to patch and update the whole CLI.
-
-
-ALIASES
-  $ env-lock plugins add
-
-EXAMPLES
-  $ env-lock plugins:install myplugin 
-
-  $ env-lock plugins:install https://github.com/someuser/someplugin
-
-  $ env-lock plugins:install someuser/someplugin
-```
-
-## `env-lock plugins:link PLUGIN`
-
-Links a plugin into the CLI for development.
-
-```
-USAGE
-  $ env-lock plugins:link PLUGIN
-
-ARGUMENTS
-  PATH  [default: .] path to plugin
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Links a plugin into the CLI for development.
-  Installation of a linked plugin will override a user-installed or core plugin.
-
-  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
-  command will override the user-installed or core plugin implementation. This is useful for development work.
-
-
-EXAMPLES
-  $ env-lock plugins:link myplugin
-```
-
-## `env-lock plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ env-lock plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ env-lock plugins unlink
-  $ env-lock plugins remove
-```
-
-## `env-lock plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ env-lock plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ env-lock plugins unlink
-  $ env-lock plugins remove
-```
-
-## `env-lock plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ env-lock plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ env-lock plugins unlink
-  $ env-lock plugins remove
-```
-
-## `env-lock plugins update`
-
-Update installed plugins.
-
-```
-USAGE
-  $ env-lock plugins update [-h] [-v]
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Update installed plugins.
-```
-
 ## `env-lock replace [NAME] [FILE]`
-
 replaces an existing env entry with a new env file
 
 ```
@@ -505,6 +277,3 @@ DESCRIPTION
 EXAMPLES
   $ env-lock view
 ```
-
-_See code: [dist/commands/view/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.3/dist/commands/view/index.ts)_
-<!-- commandsstop -->
