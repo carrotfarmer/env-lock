@@ -1,6 +1,6 @@
 {
   "name": "env-lock",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Save your .env files securely",
   "author": "Dhruva Srinivas @carrotfarmer",
   "bin": {

@@ -20,7 +20,7 @@ $ npm install -g env-lock
 $ env-lock COMMAND
 running command...
 $ env-lock (--version)
-env-lock/0.0.1 darwin-arm64 node-v18.14.2
+env-lock/0.0.2 darwin-arm64 node-v18.14.2
 $ env-lock --help [COMMAND]
 USAGE
   $ env-lock COMMAND
@@ -69,7 +69,7 @@ EXAMPLES
   $ env-lock backup
 ```
 
-_See code: [dist/commands/backup/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/backup/index.ts)_
+_See code: [dist/commands/backup/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.2/dist/commands/backup/index.ts)_
 
 ## `env-lock dbpath`
 
@@ -86,7 +86,7 @@ EXAMPLES
   $ env-lock dbpath
 ```
 
-_See code: [dist/commands/dbpath/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/dbpath/index.ts)_
+_See code: [dist/commands/dbpath/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.2/dist/commands/dbpath/index.ts)_
 
 ## `env-lock delete [NAME]`
 
@@ -106,7 +106,7 @@ EXAMPLES
   $ env-lock delete
 ```
 
-_See code: [dist/commands/delete/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/delete/index.ts)_
+_See code: [dist/commands/delete/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.2/dist/commands/delete/index.ts)_
 
 ## `env-lock deletedb`
 
@@ -123,7 +123,7 @@ EXAMPLES
   $ env-lock deletedb
 ```
 
-_See code: [dist/commands/deletedb/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/deletedb/index.ts)_
+_See code: [dist/commands/deletedb/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.2/dist/commands/deletedb/index.ts)_
 
 ## `env-lock help [COMMANDS]`
 
@@ -160,7 +160,7 @@ EXAMPLES
   $ env-lock init
 ```
 
-_See code: [dist/commands/init/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/init/index.ts)_
+_See code: [dist/commands/init/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.2/dist/commands/init/index.ts)_
 
 ## `env-lock list`
 
@@ -177,7 +177,7 @@ EXAMPLES
   $ env-lock list
 ```
 
-_See code: [dist/commands/list/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/list/index.ts)_
+_See code: [dist/commands/list/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.2/dist/commands/list/index.ts)_
 
 ## `env-lock plugins`
 
@@ -431,7 +431,7 @@ EXAMPLES
   $ env-lock replace
 ```
 
-_See code: [dist/commands/replace/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/replace/index.ts)_
+_See code: [dist/commands/replace/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.2/dist/commands/replace/index.ts)_
 
 ## `env-lock restore [BACKUPPATH]`
 
@@ -451,7 +451,7 @@ EXAMPLES
   $ env-lock restore
 ```
 
-_See code: [dist/commands/restore/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/restore/index.ts)_
+_See code: [dist/commands/restore/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.2/dist/commands/restore/index.ts)_
 
 ## `env-lock save [FILE] [NAME]`
 
@@ -472,7 +472,7 @@ EXAMPLES
   $ env-lock save
 ```
 
-_See code: [dist/commands/save/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/save/index.ts)_
+_See code: [dist/commands/save/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.2/dist/commands/save/index.ts)_
 
 ## `env-lock secretkey`
 
@@ -489,7 +489,7 @@ EXAMPLES
   $ env-lock secretkey
 ```
 
-_See code: [dist/commands/secretkey/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/secretkey/index.ts)_
+_See code: [dist/commands/secretkey/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.2/dist/commands/secretkey/index.ts)_
 
 ## `env-lock view [NAME]`
 
@@ -512,5 +512,5 @@ EXAMPLES
   $ env-lock view
 ```
 
-_See code: [dist/commands/view/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/view/index.ts)_
+_See code: [dist/commands/view/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.2/dist/commands/view/index.ts)_
 <!-- commandsstop -->
