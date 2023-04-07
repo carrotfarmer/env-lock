@@ -20,7 +20,7 @@ $ npm install -g env-lock
 $ env-lock COMMAND
 running command...
 $ env-lock (--version)
-env-lock/0.0.0 darwin-arm64 node-v18.14.2
+env-lock/0.0.1 darwin-arm64 node-v18.14.2
 $ env-lock --help [COMMAND]
 USAGE
   $ env-lock COMMAND
@@ -41,6 +41,7 @@ USAGE
 * [`env-lock plugins:uninstall PLUGIN...`](#env-lock-pluginsuninstall-plugin-1)
 * [`env-lock plugins:uninstall PLUGIN...`](#env-lock-pluginsuninstall-plugin-2)
 * [`env-lock plugins update`](#env-lock-plugins-update)
+* [`env-lock save [FILE]`](#env-lock-save-file)
 
 ## `env-lock hello PERSON`
 
@@ -64,7 +65,7 @@ EXAMPLES
   hello friend from oclif! (./src/commands/hello/index.ts)
 ```
 
-_See code: [dist/commands/hello/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.0/dist/commands/hello/index.ts)_
+_See code: [dist/commands/hello/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/hello/index.ts)_
 
 ## `env-lock hello world`
 
@@ -334,4 +335,24 @@ FLAGS
 DESCRIPTION
   Update installed plugins.
 ```
+
+## `env-lock save [FILE]`
+
+Save .env file
+
+```
+USAGE
+  $ env-lock save [FILE]
+
+ARGUMENTS
+  FILE  file to read
+
+DESCRIPTION
+  Save .env file
+
+EXAMPLES
+  $ env-lock save
+```
+
+_See code: [dist/commands/save/index.ts](https://github.com/carrotfarmer/env-lock/blob/v0.0.1/dist/commands/save/index.ts)_
 <!-- commandsstop -->
