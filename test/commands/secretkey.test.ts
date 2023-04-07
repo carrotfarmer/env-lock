@@ -7,4 +7,4 @@ describe("secretkey", () => {
     .it("runs secretkey", (ctx) => {
       expect(ctx.stdout).lengthOf(257);
     });
-});
+})
