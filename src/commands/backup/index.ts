@@ -16,7 +16,7 @@ export default class Backup extends Command {
   public async run(): Promise<void> {
     const { args } = await this.parse(Backup);
 
-    const dbExists = checkEnvDb();
+    const dbExists = await checkEnvDb();
 
     if (!dbExists) {
       this.log(

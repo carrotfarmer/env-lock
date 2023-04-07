@@ -9,14 +9,23 @@ import { decryptString } from "./encryptString";
 const db = new Database(path.resolve(__dirname, "envStore.sqlite"));
 
 export const viewSecretKey = () => {
-  const query = db.prepare("SELECT * FROM secretKey");
-  let keyObj: { secretKey: string } = { secretKey: "" };
+  try {
+    const query = db.prepare("SELECT * FROM secretKey");
+    let keyObj: { secretKey: string } = { secretKey: "" };
 
-  for (const key of query.iterate()) {
-    keyObj = key;
+    for (const key of query.iterate()) {
+      keyObj = key;
+    }
+
+    return keyObj.secretKey;
+  } catch (err) {
+    console.log(chalk.redBright.bold("There was an error while retrieving the secret key."));
+    console.log(
+      chalk.blue(
+        `Make sure you run ${chalk.blue.bold("env-lock init")} before running this command!`
+      )
+    );
   }
-
-  return keyObj.secretKey;
 };
 
 export const viewEnv = (envName: string): EnvVar[] | undefined => {

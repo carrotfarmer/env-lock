@@ -10,7 +10,7 @@ export default class DeleteDb extends Command {
   static examples = ["<%= config.bin %> <%= command.id %>"];
 
   public async run(): Promise<void> {
-    const dbExists = checkEnvDb();
+    const dbExists = await checkEnvDb();
 
     const confirmation = await ux.confirm(
       "This action is irreversible. Are you sure you want to continue?"

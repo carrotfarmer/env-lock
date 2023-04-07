@@ -20,7 +20,7 @@ export default class View extends Command {
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(View);
 
-    const dbExists = checkEnvDb();
+    const dbExists = await checkEnvDb();
 
     if (!dbExists) {
       this.log(

@@ -10,7 +10,9 @@ export default class List extends Command {
   static examples = ["<%= config.bin %> <%= command.id %>"];
 
   public async run(): Promise<void> {
-    if (checkEnvDb()) {
+    const dbExists = await checkEnvDb();
+
+    if (dbExists) {
       const envs = listEnvs();
 
       envs.length > 0

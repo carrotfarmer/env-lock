@@ -21,7 +21,7 @@ export default class Save extends Command {
 
   public async run(): Promise<void> {
     const { args } = await this.parse(Save);
-    const dbExists = checkEnvDb();
+    const dbExists = await checkEnvDb();
 
     if (args.file && args.name) {
       if (!dbExists) {
