@@ -1,6 +1,9 @@
 env-lock
 =================
 
+[![Downloads/week](https://img.shields.io/npm/dw/oclif-hello-world.svg)](https://npmjs.org/package/env-lock)
+[![Version](https://img.shields.io/npm/v/oclif-hello-world.svg)](https://npmjs.org/package/env-lock)
+
 A CLI to manage your .env files
 
 * [Usage](#usage)
